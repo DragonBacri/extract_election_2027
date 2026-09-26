@@ -1,0 +1,22 @@
+name: Build et push image
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: env
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Connexion au registry Scaleway
+        run: echo "${{ secrets.SCW_SECRET_KEY }}" | docker login rg.fr-par.scw.cloud -u nologin --password-stdin
+
+      - name: Build et push
+        run: |
+          IMAGE=rg.fr-par.scw.cloud/${{ vars.SCW_NAMESPACE }}/mon-script
+          docker build -f dockerfile -t $IMAGE:latest -t $IMAGE:${{ github.sha }} .
+          docker push --all-tags $IMAGE

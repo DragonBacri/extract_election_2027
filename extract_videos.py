@@ -21,6 +21,7 @@ def get_time_from_delay(delay : str) :
         
         
         now  = datetime.now()
+        real_time =  datetime.now()
         if 'd' in formated_delay :
             days = int(re.findall(r'\d+',formated_delay)[0]) or 0
             real_time = now - timedelta(days= days )
@@ -35,7 +36,7 @@ def get_time_from_delay(delay : str) :
             real_time = now - timedelta(hours= hours)
         
     else :
-        return
+        return datetime.now()
         
     return real_time
 
@@ -64,7 +65,7 @@ if __name__ == '__main__':
             "views" : v.get("views"),
             "channel" : v.get("channel").get("name"),
             "upload_at" : get_time_from_delay(v.get("published_date")).isoformat(),
-            "lenght" : v.get('lenght'),
+            "lenght" : v.get('length'),
             "description" : v.get("description")
             
             
