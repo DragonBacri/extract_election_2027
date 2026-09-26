@@ -1,0 +1,5 @@
+.env*
+*.ipynb
+*.csv
+*.xlsx
+__pycache__
