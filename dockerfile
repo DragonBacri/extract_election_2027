@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY extract_videos.py extract_polls.py supabase_engine.py ./
 
-CMD ["python", "extract_videos.py"]
+CMD ["sh", "-c", "python ${SCRIPT:-extract_videos.py}"]
