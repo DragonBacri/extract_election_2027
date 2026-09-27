@@ -47,7 +47,8 @@ def get_videos(searche  = " Elections Présidentielles 2027" ) :
     "engine": "youtube",
     "search_query": searche ,
     "sp": "EgQIAhAB",  
-    "hl": "en",          
+    "hl": "en",
+    "gl": "fr"          
 })
     
     return  res["video_results"]
